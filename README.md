@@ -1,3 +1,3 @@
-# Nisu
-## The Homemade Console
-----------------------------
+# Nisu - The Homemade Console
+
+This is basically
