@@ -3,7 +3,7 @@ PVector pos;
 ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 String Mode = "GAME";
-boolean up, down, left, right, space;
+boolean up, down, left, right, space, nu;
 void setup() {
   size(1024, 512);
   map = createGraphics(128, 64);
@@ -52,12 +52,17 @@ void draw() {
       }
       if (!n) {
         for (int j=asteroids.size()-1; j>=0; j--) {
-          if (dist(bullets.get(i).pos.x, bullets.get(i).pos.y, asteroids.get(j).pos.x, asteroids.get(j).pos.y)<asteroids.get(j).size/2 + 4) {
+          if (dist(bullets.get(i).pos.x, bullets.get(i).pos.y, 
+          asteroids.get(j).pos.x, asteroids.get(j).pos.y)<asteroids.get(j).size/2 + 4) {
             bullets.remove(i);
             asteroids.remove(j);
           }
         }
       }
+    }
+    if(nu){
+      bullets.add(new Bullet(new PVector(pos.x, pos.y)));
+      nu = false;
     }
     map.endDraw();
     image(map, 0, 0, width, height);
@@ -120,7 +125,7 @@ void keyPressed() {
   }
   if (key==' ') {
     if (!space) {
-      bullets.add(new Bullet(new PVector(pos.x, pos.y)));
+      nu = true;
     }
     space = true;
   }
